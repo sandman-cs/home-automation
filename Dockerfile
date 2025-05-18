@@ -71,4 +71,4 @@ WORKDIR /home/homeassistant
 EXPOSE 8123
 
 # Run Home Assistant
-CMD ["python3", "-m", "hass"]
+CMD ["/srv/homeassistant/bin/hass", "--open-ui"]
