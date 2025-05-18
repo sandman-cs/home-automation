@@ -51,19 +51,24 @@ RUN useradd -m homeassistant \
 # Switch to the Home Assistant user
 RUN su -u homeassistant -H -s \
     && cd /srv/homeassistant \
-    && python3.12 -m venv . \
-    && source bin/activate
-
-# Install Home Assistant in the virtual environment
-RUN pip install --upgrade pip \
+    && python3.12 -m venv /srv/homeassistant \
+    && cd /srv/homeassistant \
+    # && python3.12 -m venv . \
+    # && source bin/activate
+    && pip install --upgrade pip \
     && pip install wheel \
     && pip install homeassistant
+
+# Install Home Assistant in the virtual environment
+# RUN pip install --upgrade pip \
+#     && pip install wheel \
+#     && pip install homeassistant
 
 # Set working directory
 WORKDIR /home/homeassistant
 
 # Install Home Assistant
-RUN pip3 install homeassistant
+# RUN pip3 install homeassistant
 
 # Expose default Home Assistant port
 EXPOSE 8123
