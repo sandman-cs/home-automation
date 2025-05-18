@@ -26,8 +26,9 @@ RUN dnf -y update \
     bluez \
     tzdata \
     autoconf \
-    libavfilter-free \
-    ffmpeg-free \
+    #libavfilter-free \
+    #ffmpeg-free \
+    vlc-plugin-ffmpeg \
     libtiff \
     gcc \
     make \
