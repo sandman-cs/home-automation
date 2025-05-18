@@ -6,6 +6,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
+RUN dnf -y install https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+    && dnf install yum-utils -y \
+# Add the EPEL repository
+    && dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm -y \
+    && dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm -y
+
+
 # Install dependencies
 RUN dnf -y update \
     && dnf install -y \
