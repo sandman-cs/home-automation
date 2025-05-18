@@ -26,6 +26,7 @@ RUN dnf -y update \
     bluez \
     tzdata \
     autoconf \
+    libavfilter-free \
     ffmpeg-free \
     libtiff \
     gcc \
