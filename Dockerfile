@@ -43,19 +43,16 @@ RUN rm -f /usr/bin/python3
 RUN ln -s /usr/bin/python3.12 /usr/bin/python3
 
 # Create Home Assistant user
-RUN useradd -m homeassistant 
-RUN mkdir /srv/homeassistant
-RUN chown homeassistant:homeassistant /srv/homeassistant 
-RUN su -u homeassistant -H -s
-RUN cd /srv/homeassistant
-RUN python3.12 -m venv .
-RUN source bin/activate
-# RUN chmod -R 755 /srv/homeassistant 
-    # && su -u homeassistant -H -s \
-    # && cd /srv/homeassistant \
-    # && python3.12 -m venv . \
-    # && . bin/activate \
-    # && source bin/activate
+RUN useradd -m homeassistant \
+    && mkdir /srv/homeassistant \
+    && chown homeassistant:homeassistant /srv/homeassistant \
+    && chmod 755 /srv/homeassistant
+# Create a virtual environment for Home Assistant
+# Switch to the Home Assistant user
+RUN su -u homeassistant -H -s \
+    && cd /srv/homeassistant \
+    && python3.12 -m venv . \
+    && source bin/activate
 
 # Install Home Assistant in the virtual environment
 RUN pip install --upgrade pip \
@@ -72,4 +69,4 @@ RUN pip3 install homeassistant
 EXPOSE 8123
 
 # Run Home Assistant
-CMD ["python3", "-m", "homeassistant"]
+CMD ["python3", "-m", "hass"]
