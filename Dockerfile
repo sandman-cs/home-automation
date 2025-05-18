@@ -1,5 +1,5 @@
 # Use Oracle Linux 9 as the base image
-FROM oraclelinux:9-latest
+FROM oraclelinux:9
 
 RUN dnf -y install https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && dnf install yum-utils -y \
