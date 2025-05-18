@@ -51,8 +51,8 @@ RUN su homeassistant -H -s \
     && cd /srv/homeassistant \
     # && python3.12 -m venv . \
     # && source bin/activate
-    && pip install --upgrade pip \
-    && pip install wheel 
+RUN pip install --upgrade pip 
+RUN pip install wheel 
 RUN pip install homeassistant
 
 # Install Home Assistant in the virtual environment
