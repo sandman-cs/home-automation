@@ -38,7 +38,7 @@ RUN dnf -y update \
 
 # Install additional dependencies for Home Assistant
 # Upgrade pip
-RUN python3.12 -m pip install --upgrade pip
+# RUN python3.12 -m pip install --upgrade pip
 RUN rm -f /usr/bin/python3   
 RUN ln -s /usr/bin/python3.12 /usr/bin/python3
 
@@ -52,7 +52,7 @@ RUN useradd -m homeassistant \
     && cd /srv/homeassistant \
     && python3.12 -m venv . \
     && . bin/activate \
-    source bin/activate
+    && source bin/activate
 
 # Install Home Assistant in the virtual environment
 RUN pip install --upgrade pip \
