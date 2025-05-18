@@ -45,8 +45,8 @@ RUN useradd -m homeassistant \
 # Create a virtual environment for Home Assistant
 # Switch to the Home Assistant user
 USER homeassistant
-RUN su homeassistant -H -s 
-RUN cd /srv/homeassistant \
+#RUN su homeassistant -H -s 
+RUN cd /srv/homeassistant 
 RUN python3.12 -m venv /srv/homeassistant \
     && source /srv/homeassistant/bin/activate \
     && pip install --upgrade pip \
