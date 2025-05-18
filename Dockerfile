@@ -1,10 +1,5 @@
 # Use Oracle Linux 9 as the base image
-FROM oraclelinux:9
-
-# Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive \
-    LANG=C.UTF-8 \
-    LC_ALL=C.UTF-8
+FROM oraclelinux:9-slim
 
 RUN dnf -y install https://download.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
     && dnf install yum-utils -y \
@@ -49,7 +44,8 @@ RUN useradd -m homeassistant \
     && chmod 755 /srv/homeassistant
 # Create a virtual environment for Home Assistant
 # Switch to the Home Assistant user
-RUN su -u homeassistant -H -s \
+USER homeassistant
+RUN su homeassistant -H -s \
     && cd /srv/homeassistant \
     && python3.12 -m venv /srv/homeassistant \
     && cd /srv/homeassistant \
