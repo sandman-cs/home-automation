@@ -20,6 +20,7 @@ RUN dnf -y update \
     tzdata \
     autoconf \
     ffmpeg-free \
+    libtiff \
     gcc \
     make \
     git \
@@ -33,7 +34,21 @@ RUN rm -f /usr/bin/python3
 RUN ln -s /usr/bin/python3.12 /usr/bin/python3
 
 # Create Home Assistant user
-RUN useradd -m homeassistant
+RUN useradd -m homeassistant \
+    && usermod -aG wheel homeassistant \
+    && mkdir -p /srv/homeassistant \
+    && chown -R homeassistant:homeassistant /srv/homeassistant \
+    && chmod -R 755 /srv/homeassistant \
+    && su -u homeassistant -H -s \
+    && cd /srv/homeassistant \
+    && python3.12 -m venv . \
+    && . bin/activate \
+    source bin/activate
+
+# Install Home Assistant in the virtual environment
+RUN pip install --upgrade pip \
+    && pip install wheel \
+    && pip install homeassistant
 
 # Set working directory
 WORKDIR /home/homeassistant
