@@ -67,9 +67,6 @@ RUN python3.12 -m venv /srv/homeassistant \
 # Set working directory
 WORKDIR /home/homeassistant
 
-# Install Home Assistant
-# RUN pip3 install homeassistant
-
 # Expose default Home Assistant port
 EXPOSE 8123
 
